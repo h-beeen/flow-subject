@@ -21,7 +21,7 @@ public class FixedFileExtensionService {
 
     public List<FixedFileExtensionResponse> getFixedFileExtensions() {
         List<FixedFileExtension> fixedFileExtensions = fixedFileExtensionRepository.findAll();
-        return FixedFileExtensionResponse.of(fixedFileExtensions);
+        return FixedFileExtensionResponse.from(fixedFileExtensions);
     }
 
     public void changeFixedFileExtensionCheckBox(Long id) {

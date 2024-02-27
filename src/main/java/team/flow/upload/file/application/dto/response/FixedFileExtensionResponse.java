@@ -9,7 +9,7 @@ public record FixedFileExtensionResponse(
         String fileExtensionType,
         boolean isRestricted
 ) {
-    public static List<FixedFileExtensionResponse> of(List<FixedFileExtension> fixedFileExtensions) {
+    public static List<FixedFileExtensionResponse> from(List<FixedFileExtension> fixedFileExtensions) {
         return fixedFileExtensions.stream()
                 .map(fixedFileExtension -> new FixedFileExtensionResponse(
                         fixedFileExtension.getId(),
