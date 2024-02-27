@@ -1,0 +1,95 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Flow File Uploader</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'NotoSansKRBlack';
+            src: url('/font/notosanskr_medium.otf') format('opentype');
+        }
+
+        body {
+            font-family: 'NotoSansKRBlack', sans-serif;
+            background-color: #670FD7; /* Flow Color */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            font-size: 24px;
+        }
+
+        .custom-container {
+            background-color: #f8f8ff; /* 연한 연두색 */
+            padding: 20px;
+            border-radius: 20px; /* 라운딩 */
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .jumbotron {
+            background-color: #f8f8ff; /* 하얀색 */
+            border-radius: 20px; /* 라운딩 */
+            padding: 20px;
+        }
+
+        .lead {
+            font-size: 18px;
+            margin-bottom: 50px;
+        }
+
+        .btn-lg {
+            margin-right: 10px;
+            margin-bottom: 10px;
+            background-color: #B39EE4; /* Flow Sub color */
+            border-color: #B39EE4; /* Flow Sub color */
+            color: #ffffff; /* white */
+        }
+
+        .btn-lg:hover {
+            background-color: #ffffff; /* 연두색 */
+            border-color: #464646; /* Flow Sub color */
+            color: #000000
+        }
+
+        img {
+            width: 180px;
+            display: block;
+            margin: auto auto 30px;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <div class="custom-container">
+        <div class="jumbotron">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e3/Flow_logo_211215.png"
+                 width="30%"/>
+            <div class="lead">
+                <p class="text-right"><b>변해빈</b><br><a href="mailto:joker7011@naver.com">joker7011@naver.com</a></p>
+            </div>
+            <div class="text-center">
+                <div>
+                    <a class="btn btn-lg btn-success" href="/members/new">파일 업로드</a>
+                    <a class="btn btn-lg btn-success" href="/members/new">파일 다운로드</a>
+                    <a class="btn btn-lg btn-success" href="/members">파일 확장자 차단</a>
+                </div>
+                <div style="margin-top: 40px;">
+                    <div th:replace="~{fragments/footer :: footer}"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> <!-- /container -->
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
