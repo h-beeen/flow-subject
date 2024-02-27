@@ -6,12 +6,11 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/customDesign.css}"/>
-    <style>
-
-    </style>
 </head>
 
 <body>
+
+
 <div class="container">
     <a th:href="@{/}" class="btn btn-lg btn-success">메인 페이지로 이동</a>
     <div class="custom-container">
@@ -23,14 +22,26 @@
             </div>
             <div class="custom-box" style="white-space: nowrap;">
                 <h5><u>고정 확장자</u></h5><br>
-                <div th:each="fixedFileExtension : ${fixedFileExtensions}"
-                     style="display: inline-block; margin-right: 10px;">
-                    <input type="checkbox" th:checked="${fixedFileExtension.isRestricted}"
-                           th:attr="data-extension-id=${fixedFileExtension.id}" onchange="updateCheckBoxStatus(this)"/>
-                    <span th:text="${fixedFileExtension.fileExtensionType}"></span>
+                <div th:each="fixedFileExtension : ${fixedFileExtensions}" style="display: inline-block; margin-right: 10px;">
+                    <div class="form-check form-check-inline">
+                        <input type="checkbox" class="form-check-input" th:checked="${fixedFileExtension.isRestricted}"
+                               th:attr="data-extension-id=${fixedFileExtension.id}" onchange="updateCheckBoxStatus(this)"/>
+                        <label class="form-check-label" th:text="${fixedFileExtension.fileExtensionType}"></label>
+                    </div>
                 </div>
             </div>
-
+            <div class="custom-box">
+                <h5><u>커스텀 확장자</u></h5><br>
+                <div class="input-group mx-auto mb-md-2" style="box-shadow: none;">
+                    <input type="text" class="form-control" id="customExtensionInput" placeholder="확장자 입력">
+                    <div class="input-group-append">
+                        <button class="btn btn-secondary" type="button" onclick="addCustomExtension()">추가</button>
+                    </div>
+                </div>
+                <div th:each="customExtension : ${customExtensions}" style="display: inline-block; margin-right: 10px;">
+                    <span th:text="${customExtension}"></span>
+                </div>
+            </div>
             <div style="margin-top: 40px;">
                 <div th:replace="~{fragments/footer :: footer}"></div>
             </div>
