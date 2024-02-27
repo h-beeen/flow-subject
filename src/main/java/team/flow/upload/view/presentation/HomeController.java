@@ -1,4 +1,4 @@
-package team.flow.upload.view.controller;
+package team.flow.upload.view.presentation;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

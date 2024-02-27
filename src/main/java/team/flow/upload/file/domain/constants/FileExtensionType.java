@@ -1,4 +1,4 @@
-package team.flow.upload.domain.constants;
+package team.flow.upload.file.domain.constants;
 
 public enum FileExtensionType {
     BAT,

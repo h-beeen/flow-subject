@@ -1,10 +1,9 @@
-package team.flow.upload.domain;
+package team.flow.upload.file.domain;
 
 import jakarta.persistence.*;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import team.flow.upload.domain.constants.FileExtensionType;
+import team.flow.upload.file.domain.constants.FileExtensionType;
 
 import static jakarta.persistence.GenerationType.IDENTITY;
 import static lombok.AccessLevel.PROTECTED;
