@@ -3,58 +3,17 @@
 <head>
     <title>Flow File Uploader</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/customDesign.css}"/>
     <style>
-        @font-face {
-            font-family: 'NotoSansKRBlack';
-            src: url('/font/notosanskr_medium.otf') format('opentype');
-        }
 
-        body {
-            font-family: 'NotoSansKRBlack', sans-serif;
-            background-color: #670FD7; /* Flow Color */
-            word-spacing: -1px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-
-        h1 {
-            font-size: 24px;
-            margin-bottom: 40px;
-        }
-
-        .custom-container {
-            background-color: #f8f8ff; /* 연한 연두색 */
-            padding: 20px;
-            border-radius: 20px; /* 라운딩 */
-            margin: 20px 0;
-            text-align: center;
-        }
-
-        .jumbotron {
-            background-color: #f8f8ff; /* 하얀색 */
-            border-radius: 20px; /* 라운딩 */
-            padding: 20px;
-        }
-
-        .lead {
-            font-size: 18px;
-            margin-bottom: 50px;
-        }
-
-        img {
-            width: 180px;
-            display: block;
-            margin: auto auto 30px;
-        }
     </style>
 </head>
 
 <body>
 <div class="container">
+    <a th:href="@{/}" class="btn btn-lg btn-success">메인 페이지로 이동</a>
     <div class="custom-container">
         <div class="jumbotron">
             <img src="https://upload.wikimedia.org/wikipedia/commons/e/e3/Flow_logo_211215.png" width="30%"/><br>
@@ -62,8 +21,8 @@
             <div class="lead">
                 <p class="text-md-center">파일 확장자에 따라 특정 형식의 파일 업로드를 제한합니다.</p>
             </div>
-            <div style="white-space: nowrap;">
-                <b>고정 확장자 :&nbsp;&nbsp;&nbsp;</b>
+            <div class="custom-box" style="white-space: nowrap;">
+                <h5><u>고정 확장자</u></h5><br>
                 <div th:each="fixedFileExtension : ${fixedFileExtensions}"
                      style="display: inline-block; margin-right: 10px;">
                     <input type="checkbox" th:checked="${fixedFileExtension.isRestricted}"
@@ -71,6 +30,7 @@
                     <span th:text="${fixedFileExtension.fileExtensionType}"></span>
                 </div>
             </div>
+
             <div style="margin-top: 40px;">
                 <div th:replace="~{fragments/footer :: footer}"></div>
             </div>
@@ -81,18 +41,20 @@
 <script>
     function updateCheckBoxStatus(checkbox) {
         const extensionId = checkbox.getAttribute('data-extension-id');
-        fetch('/file/restrict', {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
+        $.ajax({
+            url: '/file/restrict',
+            type: 'PATCH',
+            contentType: 'application/json',
+            data: JSON.stringify({
                 id: extensionId
-            })
-        })
-            .then(response => response.json())
-            .then(data => console.log(data))
-            .catch(error => console.error('Error:', error));
+            }),
+            success: function(data) {
+                console.log(data);
+            },
+            error: function(error) {
+                console.error('Error:', error);
+            }
+        });
     }
 </script>
 
