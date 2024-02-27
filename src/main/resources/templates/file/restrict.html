@@ -52,7 +52,12 @@
                         <td th:text="${#numbers.formatInteger(iterStat.count, '03')}"></td>
                         <td th:text="${customFileExtension.name}"></td>
                         <td th:text="${customFileExtension.createdDateTime()}"></td>
-                        <td th:text="${customFileExtension.name}"></td>
+                        <td>
+                        <td>
+                            <button class="btn btn-secondary" type="button"
+                                    th:onclick="'deleteCustomExtension(' + ${customFileExtension.id} + ')'">삭제
+                            </button>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
@@ -73,7 +78,30 @@
             contentType: 'application/json',
             data: JSON.stringify({
                 id: extensionId
-            })
+            }),
+            success: function (response) {
+                location.reload();
+            },
+            error: function (error) {
+                console.error("Error deleting custom extension:", error);
+            }
+        });
+    }
+
+    function deleteCustomExtension(extensionId) {
+        $.ajax({
+            url: '/file/restrict',
+            type: 'DELETE',
+            contentType: 'application/json',
+            data: JSON.stringify({
+                id: extensionId
+            }),
+            success: function (response) {
+                location.reload();
+            },
+            error: function (error) {
+                console.error("Error deleting custom extension:", error);
+            }
         });
     }
 </script>

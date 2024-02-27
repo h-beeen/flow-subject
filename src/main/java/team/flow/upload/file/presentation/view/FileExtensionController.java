@@ -1,4 +1,4 @@
-package team.flow.upload.file.presentation;
+package team.flow.upload.file.presentation.view;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -31,15 +31,5 @@ public class FileExtensionController {
         model.addAttribute("customFileExtensions", customFileExtensions);
 
         return "file/restrict";
-    }
-
-    @PatchMapping
-    public void updateFixedFileExtensionStatus(@RequestBody FileExtensionIdRequest request) {
-        fixedFileExtensionService.changeFixedFileExtensionCheckBox(request);
-    }
-
-    @DeleteMapping
-    public void deleteCustomFileExtension(@RequestBody FileExtensionIdRequest request) {
-        customFileExtensionService.deleteCustomFileExtensions(request);
     }
 }
