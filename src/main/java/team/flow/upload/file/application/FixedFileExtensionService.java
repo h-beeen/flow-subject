@@ -3,7 +3,7 @@ package team.flow.upload.file.application;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import team.flow.upload.file.application.dto.FixedFileExtensionResponse;
+import team.flow.upload.file.application.dto.response.FixedFileExtensionResponse;
 import team.flow.upload.file.domain.FixedFileExtension;
 import team.flow.upload.file.infra.persistence.FixedFileExtensionRepository;
 import team.flow.upload.global.exception.BusinessException;

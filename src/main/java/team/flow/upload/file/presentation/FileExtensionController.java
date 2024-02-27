@@ -6,7 +6,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import team.flow.upload.file.application.FixedFileExtensionService;
-import team.flow.upload.file.application.dto.FixedFileExtensionResponse;
+import team.flow.upload.file.application.dto.request.FixedFileExtensionIdRequest;
+import team.flow.upload.file.application.dto.response.FixedFileExtensionResponse;
 
 import java.util.List;
 
@@ -25,9 +26,9 @@ public class FileExtensionController {
         return "file/restrict";
     }
 
-    @PatchMapping("/fixedFileExtension")
-    public void updateFixedFileExtensionStatus(@RequestParam Long id) {
-        fixedFileExtensionService.changeFixedFileExtensionCheckBox(id);
+    @PatchMapping
+    public void updateFixedFileExtensionStatus(@RequestBody FixedFileExtensionIdRequest request) {
+        fixedFileExtensionService.changeFixedFileExtensionCheckBox(request.id());
     }
 
 }
