@@ -3,6 +3,7 @@ package team.flow.upload.file.application;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import team.flow.upload.file.application.dto.request.FileExtensionIdRequest;
 import team.flow.upload.file.application.dto.response.FixedFileExtensionResponse;
 import team.flow.upload.file.domain.FixedFileExtension;
 import team.flow.upload.file.infra.persistence.FixedFileExtensionRepository;
@@ -24,8 +25,9 @@ public class FixedFileExtensionService {
         return FixedFileExtensionResponse.from(fixedFileExtensions);
     }
 
-    public void changeFixedFileExtensionCheckBox(Long id) {
-        FixedFileExtension fixedFileExtension = fixedFileExtensionRepository.findById(id)
+    public void changeFixedFileExtensionCheckBox(FileExtensionIdRequest request) {
+        Long fixedFileExtensionId = request.id();
+        FixedFileExtension fixedFileExtension = fixedFileExtensionRepository.findById(fixedFileExtensionId)
                 .orElseThrow(() -> BusinessException.of(GLOBAL_NOT_FOUND));
 
         fixedFileExtension.changeRestrictStatus();

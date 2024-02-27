@@ -51,7 +51,7 @@
                     <tr th:each="customFileExtension, iterStat : ${customFileExtensions}">
                         <td th:text="${#numbers.formatInteger(iterStat.count, '03')}"></td>
                         <td th:text="${customFileExtension.name}"></td>
-                        <td th:text="${customFileExtension.name}"></td>
+                        <td th:text="${customFileExtension.createdDateTime()}"></td>
                         <td th:text="${customFileExtension.name}"></td>
                     </tr>
                     </tbody>
@@ -73,13 +73,7 @@
             contentType: 'application/json',
             data: JSON.stringify({
                 id: extensionId
-            }),
-            success: function (data) {
-                console.log(data);
-            },
-            error: function (error) {
-                console.error('Error:', error);
-            }
+            })
         });
     }
 </script>

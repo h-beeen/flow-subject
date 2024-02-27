@@ -6,13 +6,15 @@ import java.util.List;
 
 public record CustomFileExtensionResponse(
         Long id,
-        String name
+        String name,
+        String createdDateTime
 ) {
     public static List<CustomFileExtensionResponse> from(List<CustomFileExtension> fixedFileExtensions) {
         return fixedFileExtensions.stream()
                 .map(fixedFileExtension -> new CustomFileExtensionResponse(
                         fixedFileExtension.getId(),
-                        fixedFileExtension.getName()))
+                        fixedFileExtension.getName(),
+                        fixedFileExtension.getCreatedDate().toString().replace("T", " ")))
                 .toList();
     }
 }

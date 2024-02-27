@@ -19,9 +19,17 @@ public class QCustomFileExtension extends EntityPathBase<CustomFileExtension> {
 
     public static final QCustomFileExtension customFileExtension = new QCustomFileExtension("customFileExtension");
 
+    public final team.flow.upload.global.auditing.QBaseEntity _super = new team.flow.upload.global.auditing.QBaseEntity(this);
+
+    //inherited
+    public final DateTimePath<java.time.LocalDateTime> createdDate = _super.createdDate;
+
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
     public final StringPath name = createString("name");
+
+    //inherited
+    public final DateTimePath<java.time.LocalDateTime> updatedDate = _super.updatedDate;
 
     public QCustomFileExtension(String variable) {
         super(CustomFileExtension.class, forVariable(variable));

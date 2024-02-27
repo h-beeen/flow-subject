@@ -7,10 +7,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import team.flow.upload.file.application.CustomFileExtensionService;
 import team.flow.upload.file.application.FixedFileExtensionService;
-import team.flow.upload.file.application.dto.request.FixedFileExtensionIdRequest;
+import team.flow.upload.file.application.dto.request.FileExtensionIdRequest;
 import team.flow.upload.file.application.dto.response.CustomFileExtensionResponse;
 import team.flow.upload.file.application.dto.response.FixedFileExtensionResponse;
-import team.flow.upload.file.infra.persistence.CustomFileExtensionRepository;
 
 import java.util.List;
 
@@ -35,7 +34,12 @@ public class FileExtensionController {
     }
 
     @PatchMapping
-    public void updateFixedFileExtensionStatus(@RequestBody FixedFileExtensionIdRequest request) {
-        fixedFileExtensionService.changeFixedFileExtensionCheckBox(request.id());
+    public void updateFixedFileExtensionStatus(@RequestBody FileExtensionIdRequest request) {
+        fixedFileExtensionService.changeFixedFileExtensionCheckBox(request);
+    }
+
+    @DeleteMapping
+    public void deleteCustomFileExtension(@RequestBody FileExtensionIdRequest request) {
+        customFileExtensionService.deleteCustomFileExtensions(request);
     }
 }
