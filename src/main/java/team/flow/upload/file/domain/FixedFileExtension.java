@@ -25,4 +25,8 @@ public class FixedFileExtension {
 
     @Column(name = "is_restricted")
     private boolean isRestricted;
+
+    public void changeRestrictStatus() {
+        this.isRestricted = !isRestricted;
+    }
 }

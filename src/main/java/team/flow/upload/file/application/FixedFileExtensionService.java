@@ -6,8 +6,11 @@ import org.springframework.transaction.annotation.Transactional;
 import team.flow.upload.file.application.dto.FixedFileExtensionResponse;
 import team.flow.upload.file.domain.FixedFileExtension;
 import team.flow.upload.file.infra.persistence.FixedFileExtensionRepository;
+import team.flow.upload.global.exception.BusinessException;
 
 import java.util.List;
+
+import static team.flow.upload.global.exception.error.GlobalError.GLOBAL_NOT_FOUND;
 
 @Service
 @Transactional
@@ -21,7 +24,10 @@ public class FixedFileExtensionService {
         return FixedFileExtensionResponse.of(fixedFileExtensions);
     }
 
-//    public void updateFixedFileExtensionCheckBox(Long id, boolean isChecked) {
-//        fixedFileExtensionRepository.findById(id)
-//    }
+    public void changeFixedFileExtensionCheckBox(Long id) {
+        FixedFileExtension fixedFileExtension = fixedFileExtensionRepository.findById(id)
+                .orElseThrow(() -> BusinessException.of(GLOBAL_NOT_FOUND));
+
+        fixedFileExtension.changeRestrictStatus();
+    }
 }
