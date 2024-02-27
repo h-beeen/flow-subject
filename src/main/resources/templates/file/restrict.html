@@ -37,21 +37,21 @@
                 <div class="input-group mx-auto mb-md-2" style="box-shadow: none;">
                     <input type="text" class="form-control" id="customExtensionInput" placeholder="확장자 입력">
                     <div class="input-group-append">
-                        <button class="btn btn-secondary" type="button" onclick="addCustomExtension()">추가</button>
+                        <button class="btn btn-secondary" type="button" onclick="createCustomExtension()">추가</button>
                     </div>
                 </div>
                 <table class="table table-striped custom-table">
                     <thead>
                     <th class="number">순번</th>
+                    <th class="created-at">등록 일시</th>
                     <th class="name-column">확장자</th>
-                    <th class="name-column">등록 일시</th>
                     <th class="delete-btn">삭제 버튼</th>
                     </thead>
                     <tbody>
                     <tr th:each="customFileExtension, iterStat : ${customFileExtensions}">
                         <td th:text="${#numbers.formatInteger(iterStat.count, '03')}"></td>
-                        <td th:text="${customFileExtension.name}"></td>
                         <td th:text="${customFileExtension.createdDateTime()}"></td>
+                        <td th:text="${customFileExtension.name}"></td>
                         <td>
                         <td>
                             <button class="btn btn-secondary" type="button"
@@ -73,8 +73,25 @@
     function updateCheckBoxStatus(checkbox) {
         const extensionId = checkbox.getAttribute('data-extension-id');
         $.ajax({
-            url: '/file/restrict',
+            url: '/file/restrict/fixed',
             type: 'PATCH',
+            contentType: 'application/json',
+            data: JSON.stringify({
+                id: extensionId
+            }),
+            success: function (response) {
+                location.reload();
+            },
+            error: function (error) {
+                console.error("Error update fixed extension status:", error);
+            }
+        });
+    }
+
+    function deleteCustomExtension(extensionId) {
+        $.ajax({
+            url: '/file/restrict/custom',
+            type: 'DELETE',
             contentType: 'application/json',
             data: JSON.stringify({
                 id: extensionId
@@ -88,13 +105,16 @@
         });
     }
 
-    function deleteCustomExtension(extensionId) {
+    function createCustomExtension() {
+        var extensionInput = document.getElementById('customExtensionInput');
+        var extensionValue = extensionInput.value;
+
         $.ajax({
-            url: '/file/restrict',
-            type: 'DELETE',
+            url: '/file/restrict/custom',
+            type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify({
-                id: extensionId
+                name: extensionValue
             }),
             success: function (response) {
                 location.reload();
