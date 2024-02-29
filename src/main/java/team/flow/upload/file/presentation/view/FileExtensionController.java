@@ -29,6 +29,7 @@ public class FileExtensionController {
 
         model.addAttribute("fixedFileExtensions", fixedFileExtensions);
         model.addAttribute("customFileExtensions", customFileExtensions);
+        model.addAttribute("customFileCount", customFileExtensions.size());
 
         return "file/restrict";
     }

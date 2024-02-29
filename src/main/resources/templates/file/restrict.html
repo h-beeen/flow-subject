@@ -1,5 +1,7 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="ko"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Flow File Uploader</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -7,12 +9,16 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/customDesign.css}"/>
 </head>
-
+<style>
+    holy-moly {
+        margin-top: 120px;
+    }
+</style>
 <body>
 
 
 <div class="container">
-    <a th:href="@{/}" class="btn btn-lg btn-success">메인 페이지로 이동</a>
+    <a th:href="@{/}" class="btn btn-lg btn-success" style="margin-top: 3rem;">메인 페이지로 이동</a>
     <div class="custom-container">
         <div class="jumbotron">
             <img src="https://upload.wikimedia.org/wikipedia/commons/e/e3/Flow_logo_211215.png" width="30%"/><br>
@@ -33,7 +39,8 @@
                 </div>
             </div>
             <div class="custom-box">
-                <h5><u>커스텀 확장자</u></h5><br>
+                <h5><u>커스텀 확장자</u></h5>
+                <div th:text="'Storage [ ' + ${customFileCount} + ' / 200 ]'"></div>
                 <div class="input-group mx-auto mb-md-2" style="box-shadow: none;">
                     <input type="text" class="form-control" id="customExtensionInput" placeholder="확장자 입력">
                     <div class="input-group-append">
@@ -53,7 +60,6 @@
                         <td th:text="${customFileExtension.createdDateTime()}"></td>
                         <td th:text="${customFileExtension.name}"></td>
                         <td>
-                        <td>
                             <button class="btn btn-secondary" type="button"
                                     th:onclick="'deleteCustomExtension(' + ${customFileExtension.id} + ')'">삭제
                             </button>
@@ -62,9 +68,7 @@
                     </tbody>
                 </table>
             </div>
-            <div style="margin-top: 40px;">
-                <div th:replace="~{fragments/footer :: footer}"></div>
-            </div>
+            <div th:replace="~{fragments/footer :: footer}"></div>
         </div>
     </div>
 </div>
@@ -106,8 +110,8 @@
     }
 
     function createCustomExtension() {
-        var extensionInput = document.getElementById('customExtensionInput');
-        var extensionValue = extensionInput.value;
+        const extensionInput = document.getElementById('customExtensionInput');
+        const extensionValue = extensionInput.value;
 
         $.ajax({
             url: '/file/restrict/custom',
@@ -120,12 +124,11 @@
                 location.reload();
             },
             error: function (error) {
-                console.error("Error deleting custom extension:", error);
+                alert("Error : " + error.responseJSON.errorMessage);
+                console.log(error.responseJSON.errorMessage);
             }
         });
     }
 </script>
-
 </body>
-
 </html>
