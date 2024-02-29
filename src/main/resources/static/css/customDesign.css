@@ -93,4 +93,10 @@ img {
     border-color: #464646; /* Flow Sub color */
 }
 
+.table td {
+    padding: 4px;
+    text-align: center;
+    vertical-align: middle;
+}
+
 

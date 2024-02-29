@@ -7,5 +7,9 @@ public enum FileExtensionType {
     CPL,
     EXE,
     SCR,
-    JS
+    JS;
+
+    public String getLowerCase() {
+        return this.toString().toLowerCase();
+    }
 }
