@@ -42,7 +42,7 @@ public class CustomFileExtension extends BaseEntity {
 
     //== Error Handling Method ==//
     private void validateName(String name) {
-        final String REGEX = "^[a-zA-Z]+$";
+        final String REGEX = "^[a-zA-Z0-9]+$";
 
         if (name.isEmpty()) {
             throw BusinessException.of(INVALID_FILE_NAME);
