@@ -42,4 +42,4 @@ jobs:
             docker pull ${{ secrets.DEV_DOCKER_HUB_URL }}
             docker ps -f name=flow-server -q | xargs --no-run-if-empty docker container stop
             docker ps -a -f name=flow-server -q | xargs --no-run-if-empty docker container rm
-            docker run -d --name flow-server ${{ secrets.DEV_DOCKER_HUB_URL }}
+            docker run -d --name flow-server -p 8080:8080 ${{ secrets.DEV_DOCKER_HUB_URL }}
