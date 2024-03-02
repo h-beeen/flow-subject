@@ -23,20 +23,17 @@
             </div>
             <div class="custom-box">
                 <h5><u>파일 등록</u></h5>
-                <form id="uploadForm" enctype="multipart/form-data">
-                    <div class="input-group mx-auto mb-md-2" style="box-shadow: none;">
-                        <div class="container mt-2">
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="customFileInput" name="file" onchange="displayFileName()">
-                                <label class="custom-file-label" for="customFileInput" id="customFileLabel"></label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="d-flex justify-content-center">
-                        <div class="input-group-append">
-                            <button class="btn btn-secondary" type="button" onclick="uploadFile()">Upload</button>
-                        </div>
-                    </div>
+                <form method="POST" enctype="multipart/form-data" action="/file/new">
+                    <table>
+                        <tr>
+                            <td>File to upload:</td>
+                            <td><input type="file" name="file"/></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td><input type="submit" value="Upload"/></td>
+                        </tr>
+                    </table>
                 </form>
                 <div th:replace="~{fragments/footer :: footer}"></div>
             </div>
@@ -52,17 +49,17 @@
 
         function uploadFile() {
             const formData = new FormData($("#uploadForm")[0]);
-
+            console.log(formData)
             $.ajax({
                 url: '/file/new',
                 type: 'POST',
                 file: formData,
                 processData: false,
                 contentType: false,
-                success: function(response) {
+                success: function (response) {
                     console.log(response);
                 },
-                error: function(error) {
+                error: function (error) {
                     console.error(error);
                 }
             });

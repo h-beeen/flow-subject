@@ -32,4 +32,9 @@ public class FixedFileExtensionService {
 
         fixedFileExtension.changeRestrictStatus();
     }
+
+    private String extractExt(String originalFilename) {
+        int index = originalFilename.lastIndexOf(".");
+        return originalFilename.substring(index);
+    }
 }
