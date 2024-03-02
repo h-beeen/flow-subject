@@ -14,7 +14,6 @@ import team.flow.upload.file.infra.persistence.FixedFileExtensionRepository;
 import team.flow.upload.global.exception.BusinessException;
 
 import java.util.List;
-import java.util.Locale;
 
 @Service
 @Transactional
@@ -37,21 +36,23 @@ public class CustomFileExtensionService {
     public void createCustomFileExtensions(CustomFileExtensionRequest request) {
         String extensionName = request.name();
 
-        validateDuplicatedNameInFixedFileExtension(extensionName);
         validateDuplicatedNameInCustomFileExtension(extensionName);
+        validateDuplicatedNameInFixedFileExtension(extensionName);
 
         CustomFileExtension extension = CustomFileExtension.from(extensionName);
         customFileExtensionRepository.save(extension);
     }
 
-    public void validateDuplicatedNameInCustomFileExtension(String extensionName) {
+    public void validateDuplicatedNameInFixedFileExtension(String extensionName) {
+        String lowerCaseExtensionName = extensionName.toLowerCase();
+
         List<FixedFileExtension> fixedFileExtensions = fixedFileExtensionRepository.findAll();
         List<String> extensionNames = fixedFileExtensions.stream()
                 .map(fixedFileExtension -> fixedFileExtension.getFileExtensionType().getLowerCase())
                 .toList();
 
-        if (extensionNames.contains(extensionName)) {
-            throw BusinessException.of(FileExtensionError.DUPLICATED_EXTENSION_IN_CUSTOM);
+        if (extensionNames.contains(lowerCaseExtensionName)) {
+            throw BusinessException.of(FileExtensionError.DUPLICATED_EXTENSION_IN_FIXED);
         }
     }
 
@@ -63,12 +64,12 @@ public class CustomFileExtensionService {
                 .anyMatch(customFileExtension -> customFileExtension.getName().toLowerCase().equals(extensionNameLowerCase));
     }
 
-    private void validateDuplicatedNameInFixedFileExtension(String extensionName) {
-        String lowerCaseExtensionName = extensionName.toLowerCase(Locale.ENGLISH);
+    private void validateDuplicatedNameInCustomFileExtension(String extensionName) {
+        String lowerCaseExtensionName = extensionName.toLowerCase();
         boolean isDuplicated = customFileExtensionRepository.existsByName(lowerCaseExtensionName);
 
         if (isDuplicated) {
-            throw BusinessException.of(FileExtensionError.DUPLICATED_EXTENSION_IN_FIXED);
+            throw BusinessException.of(FileExtensionError.DUPLICATED_EXTENSION_IN_CUSTOM);
         }
     }
 }
