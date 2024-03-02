@@ -24,10 +24,12 @@
             <div class="custom-box">
                 <h5><u>파일 등록</u></h5>
                 <div class="container mt-6">
-                    <form method="POST" enctype="multipart/form-data" action="/file/new">
-                        <input type="file" class="form-control-file" name="file"/>
-                        <input type="submit" class="btn btn-primary" style="margin-top: 3rem;" value="Upload"/>
-                    </form>
+                    <div style="justify-content: center; align-content: center; align-items: center; display: flex">
+                        <form method="POST" enctype="multipart/form-data" action="/file/new">
+                            <input type="file" class="form-control-file" name="file" style="background-color: white; margin-top: 2rem"/>
+                            <input type="submit" class="btn btn-primary" style="margin-top: 3rem; background-color: mediumpurple" value="업로드"/>
+                        </form>
+                    </div>
                 </div>
                 <div th:replace="~{fragments/footer :: footer}"></div>
             </div>
