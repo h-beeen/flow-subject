@@ -1,7 +1,6 @@
 package team.flow.upload.file.application;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import team.flow.upload.file.domain.UploadedFile;
@@ -13,7 +12,6 @@ import team.flow.upload.global.exception.BusinessException;
 
 import java.util.Objects;
 
-@Slf4j
 @Service
 @RequiredArgsConstructor
 public class FileUploadService {
@@ -46,9 +44,6 @@ public class FileUploadService {
     }
 
     private void validateDuplicatedFileName(String originalFileName) {
-        log.warn("{}", originalFileName);
-        log.warn("{}", uploadedFileRepository.findById(1L));
-
         if (uploadedFileRepository.existsByOriginalFileName(originalFileName)) {
             throw BusinessException.of(FileError.DUPLICATED_FILE);
         }

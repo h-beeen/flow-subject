@@ -14,11 +14,9 @@ import team.flow.upload.file.application.FileUploadService;
 @Transactional
 @RequestMapping("/file/new")
 @RequiredArgsConstructor
-@Slf4j
 public class NewFileController {
 
     private final FileUploadService fileUploadService;
-
 
     @PostMapping
     public String fileUpload(@RequestParam(value = "file") MultipartFile file) {

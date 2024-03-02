@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-@Slf4j
 @Configuration
 public class S3ObjectStorageConfig {
 
@@ -25,10 +24,6 @@ public class S3ObjectStorageConfig {
             @Value("${cloud.aws.region.static}") String region,
             @Value("${cloud.aws.s3.endpoint}") String endPoint
     ) {
-        log.warn("{}", accessKey);
-        log.warn("{}", secretKey);
-        log.warn("{}", region);
-        log.warn("{}", endPoint);
         this.accessKey = accessKey;
         this.secretKey = secretKey;
         this.region = region;
