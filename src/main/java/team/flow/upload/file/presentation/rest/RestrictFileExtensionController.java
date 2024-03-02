@@ -13,7 +13,7 @@ import team.flow.upload.file.application.dto.request.FileExtensionIdRequest;
 @Transactional
 @RequestMapping("/file/restrict")
 @RequiredArgsConstructor
-public class FileExtensionRestController {
+public class RestrictFileExtensionController {
 
     private final FixedFileExtensionService fixedFileExtensionService;
     private final CustomFileExtensionService customFileExtensionService;

@@ -15,14 +15,14 @@ import java.util.List;
 
 @Controller
 @Transactional
-@RequestMapping("/file/restrict")
+@RequestMapping("/file")
 @RequiredArgsConstructor
 public class FileExtensionController {
 
     private final FixedFileExtensionService fixedFileExtensionService;
     private final CustomFileExtensionService customFileExtensionService;
 
-    @GetMapping
+    @GetMapping("/restrict")
     public String getRestrictExtensions(Model model) {
         List<FixedFileExtensionResponse> fixedFileExtensions = fixedFileExtensionService.getFixedFileExtensions();
         List<CustomFileExtensionResponse> customFileExtensions = customFileExtensionService.getCustomFileExtensions();
@@ -32,5 +32,10 @@ public class FileExtensionController {
         model.addAttribute("customFileCount", customFileExtensions.size());
 
         return "file/restrict";
+    }
+
+    @GetMapping("/new")
+    public String newFileForm(Model model) {
+        return "file/new";
     }
 }
