@@ -4,10 +4,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import team.flow.upload.file.application.CustomFileExtensionService;
 import team.flow.upload.file.application.FixedFileExtensionService;
-import team.flow.upload.file.application.dto.request.FileExtensionIdRequest;
 import team.flow.upload.file.application.dto.response.CustomFileExtensionResponse;
 import team.flow.upload.file.application.dto.response.FixedFileExtensionResponse;
 
@@ -32,10 +32,5 @@ public class FileExtensionController {
         model.addAttribute("customFileCount", customFileExtensions.size());
 
         return "file/restrict";
-    }
-
-    @GetMapping("/new")
-    public String newFileForm(Model model) {
-        return "file/new";
     }
 }

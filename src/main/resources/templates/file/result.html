@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html lang="ko"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Flow File Uploader</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/customDesign.css}"/>
+</head>
+<body>
+
+
+<div class="container">
+    <a th:href="@{/file/new}" class="btn btn-lg btn-success" style="margin-top: 3rem;">뒤로 가기</a>
+    <a th:href="@{/}" class="btn btn-lg btn-success" style="margin-top: 3rem;">메인 페이지로 이동</a>
+    <div class="custom-container">
+        <div class="jumbotron">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e3/Flow_logo_211215.png" width="30%"/><br>
+            <h1>결과</h1>
+            <div class="custom-box">
+                <div class="container mt-6">
+                    <div id="message" style="color: red;" th:text="${message}"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

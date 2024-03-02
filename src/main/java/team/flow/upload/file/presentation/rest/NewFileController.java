@@ -1,9 +1,9 @@
 package team.flow.upload.file.presentation.rest;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,8 +19,17 @@ public class NewFileController {
     private final FileUploadService fileUploadService;
 
     @PostMapping
-    public String fileUpload(@RequestParam(value = "file") MultipartFile file) {
-        fileUploadService.uploadFile(file);
-        return "redirect:/file/new";
+    public String fileUpload(
+            Model model,
+            @RequestParam(value = "file") MultipartFile file
+    ) {
+        try {
+            fileUploadService.uploadFile(file);
+        } catch (Exception e) {
+            model.addAttribute("message", e.getMessage());
+            return "/file/result";
+        }
+        model.addAttribute("message", file.getOriginalFilename() + " 파일 업로드 성공!");
+        return "/file/result";
     }
 }
