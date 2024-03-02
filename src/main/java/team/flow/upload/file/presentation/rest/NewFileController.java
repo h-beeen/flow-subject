@@ -22,8 +22,7 @@ public class NewFileController {
 
     @PostMapping
     public String fileUpload(@RequestParam(value = "file") MultipartFile file) {
-        String uploadfile = fileUploadService.uploadFile(file);
-        log.warn("{}", uploadfile);
+        fileUploadService.uploadFile(file);
         return "redirect:/file/new";
     }
 }
