@@ -1,0 +1,116 @@
+<!DOCTYPE HTML>
+<html lang="ko"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Flow File Uploader</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/customDesign.css}"/>
+</head>
+<body>
+
+
+<div class="container">
+    <a th:href="@{/}" class="btn btn-lg btn-success" style="margin-top: 3rem;">메인 페이지로 이동</a>
+    <div class="custom-container">
+        <div class="jumbotron">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e3/Flow_logo_211215.png" width="30%"/><br>
+            <h1>🤠 파일 관리 🤠</h1>
+            <div class="lead">
+                <p class="text-md-center">업로드 한 파일을 관리할 수 있습니다.</p>
+            </div>
+            <div class="custom-box">
+                <h5><u>파일</u></h5>
+                <table class="table table-striped custom-table">
+                    <thead>
+                    <th class="number">순번</th>
+                    <th class="created-at">등록 일시</th>
+                    <th class="name-column">파일 이름</th>
+                    <th class="download-btn">다운로드</th>
+                    <th class="delete-btn">삭제</th>
+                    </thead>
+                    <tbody>
+                    <tr th:each="uploadedFile, iterStat : ${uploadedFiles}">
+                        <td th:text="${#numbers.formatInteger(iterStat.count, '03')}"></td>
+                        <td th:text="${uploadedFile.createdDate}"></td>
+                        <td th:text="${uploadedFile.originalFileName}"></td>
+                        <td>
+                            <button class="btn btn-secondary" type="button" style="background-color: green"
+                                    th:onclick="'deleteCustomExtension(' + ${uploadedFile.id} + ')'">🫶
+                            </button>
+                        </td>
+                        <td>
+                            <button class="btn btn-secondary" type="button" style="background-color: hotpink"
+                                    th:onclick="'deleteCustomExtension(' + ${uploadedFile.id} + ')'">삭제
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div th:replace="~{fragments/footer :: footer}"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function updateCheckBoxStatus(checkbox) {
+        const extensionId = checkbox.getAttribute('data-extension-id');
+        $.ajax({
+            url: '/file/restrict/fixed',
+            type: 'PATCH',
+            contentType: 'application/json',
+            data: JSON.stringify({
+                id: extensionId
+            }),
+            success: function (response) {
+                location.reload();
+            },
+            error: function (error) {
+                console.error("Error update fixed extension status:", error);
+            }
+        });
+    }
+
+    function deleteCustomExtension(extensionId) {
+        $.ajax({
+            url: '/file/restrict/custom',
+            type: 'DELETE',
+            contentType: 'application/json',
+            data: JSON.stringify({
+                id: extensionId
+            }),
+            success: function (response) {
+                location.reload();
+            },
+            error: function (error) {
+                console.error("Error deleting custom extension:", error);
+            }
+        });
+    }
+
+    function createCustomExtension() {
+        const extensionInput = document.getElementById('customExtensionInput');
+        const extensionValue = extensionInput.value;
+
+        $.ajax({
+            url: '/file/restrict/custom',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({
+                name: extensionValue
+            }),
+            success: function (response) {
+                location.reload();
+            },
+            error: function (error) {
+                alert("Error : " + error.responseJSON.errorMessage);
+                console.log(error.responseJSON.errorMessage);
+            }
+        });
+    }
+</script>
+</body>
+</html>

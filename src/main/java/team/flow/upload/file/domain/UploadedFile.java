@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import team.flow.upload.global.auditing.BaseEntity;
 
 import static jakarta.persistence.GenerationType.IDENTITY;
 import static lombok.AccessLevel.PROTECTED;
@@ -12,7 +13,7 @@ import static lombok.AccessLevel.PROTECTED;
 @Getter
 @Table(name = "t_uploaded_file")
 @NoArgsConstructor(access = PROTECTED)
-public class UploadedFile {
+public class UploadedFile extends BaseEntity {
 
     @Id
     @Column(name = "uploaded_file_id")

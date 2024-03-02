@@ -14,7 +14,7 @@ public record CustomFileExtensionResponse(
                 .map(fixedFileExtension -> new CustomFileExtensionResponse(
                         fixedFileExtension.getId(),
                         fixedFileExtension.getName(),
-                        fixedFileExtension.getCreatedDate().toString().replace("T", "  ")))
+                        fixedFileExtension.getCreatedDate().toString()))
                 .toList();
     }
 }
