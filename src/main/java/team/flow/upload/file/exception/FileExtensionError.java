@@ -18,7 +18,8 @@ public enum FileExtensionError implements ErrorCode {
     DUPLICATED_EXTENSION_IN_CUSTOM("해당 확장자는 이미 커스텀 확장자로 지정되어 있습니다.", CONFLICT, "F_003"),
     DUPLICATED_EXTENSION_IN_FIXED("해당 확장자는 이미 고정 확장자로 지정되어 있습니다.", CONFLICT, "F_004"),
     RESTRICT_FIXED_EXTENSION("해당 확장자는 업로드가 금지된 고정 확장자로 지정되어 있습니다.", BAD_REQUEST, "F_005"),
-    RESTRICT_CUSTOM_EXTENSION("해당 확장자는 업로드가 금지된 커스텀 확장자로 지정되어 있습니다.", BAD_REQUEST, "F_006");
+    RESTRICT_CUSTOM_EXTENSION("해당 확장자는 업로드가 금지된 커스텀 확장자로 지정되어 있습니다.", BAD_REQUEST, "F_006"),
+    EXCEEDS_LIMITS("커스텀 확장자는 200개까지 지정 가능합니다.", BAD_REQUEST, "F_007");
 
     private final String message;
     private final HttpStatus status;

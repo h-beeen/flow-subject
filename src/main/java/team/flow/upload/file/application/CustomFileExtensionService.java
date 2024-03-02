@@ -58,18 +58,23 @@ public class CustomFileExtensionService {
 
     public boolean isRestrictCustomFileExtension(String extensionName) {
         List<CustomFileExtension> result = customFileExtensionRepository.findAll();
-        String extensionNameLowerCase = extensionName.toLowerCase();
 
+        String extensionNameLowerCase = extensionName.toLowerCase();
         return result.stream()
                 .anyMatch(customFileExtension -> customFileExtension.getName().toLowerCase().equals(extensionNameLowerCase));
     }
 
     private void validateDuplicatedNameInCustomFileExtension(String extensionName) {
+        final int EXCEEDS_LIMIT = 200;
+
         String lowerCaseExtensionName = extensionName.toLowerCase();
         boolean isDuplicated = customFileExtensionRepository.existsByName(lowerCaseExtensionName);
-
+        long elementCount = customFileExtensionRepository.count();
         if (isDuplicated) {
             throw BusinessException.of(FileExtensionError.DUPLICATED_EXTENSION_IN_CUSTOM);
+        }
+        if (elementCount > EXCEEDS_LIMIT){
+            throw BusinessException.of(FileExtensionError.EXCEEDS_LIMITS);
         }
     }
 }
