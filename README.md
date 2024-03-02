@@ -28,7 +28,7 @@
 
 <h3>💁 Project Introduction</h3>
 
-<img align="center" src="https://github.com/h-beeen/flow-subject/assets/112257466/656a4dc4-eded-4efc-9cee-0dc77fd73a3d" width="40%"/>
+<img align="center" src="https://github.com/h-beeen/flow-subject/assets/112257466/656a4dc4-eded-4efc-9cee-0dc77fd73a3d" width="70%"/>
 
 <br>
 
@@ -39,8 +39,7 @@
 
 ---
 
-<img align="center" src="https://github.com/h-beeen/flow-subject/assets/112257466/d38c0dde-d135-4a23-970c-384c681aaefb" width="40%"/>
-<img align="center" src="https://github.com/h-beeen/flow-subject/assets/112257466/90d88822-833c-4a40-ab74-e3bdbdef71e3" width="40%"/>
+<img align="center" src="https://github.com/h-beeen/flow-subject/assets/112257466/d38c0dde-d135-4a23-970c-384c681aaefb" width="70%"/>
 
 <br>
 
@@ -53,7 +52,7 @@
 
 ---
 
-<img align="center" src="https://github.com/h-beeen/flow-subject/assets/112257466/e6a05261-70e2-47cd-ae60-5e9ecb44189d" width="40%">
+<img align="center" src="https://github.com/h-beeen/flow-subject/assets/112257466/e6a05261-70e2-47cd-ae60-5e9ecb44189d" width="70%">
 
 <br>
 
@@ -64,8 +63,7 @@
 
 ---
 
-<img align="center" src="https://github.com/h-beeen/flow-subject/assets/112257466/57383bfc-7ffe-4fe0-bb89-d9f23aa81b52" width="40%">
-<img align="center" src="https://github.com/h-beeen/flow-subject/assets/112257466/0e22d654-83cd-46ce-9739-4c055bfda15e" width="40%">
+<img align="center" src="https://github.com/h-beeen/flow-subject/assets/112257466/57383bfc-7ffe-4fe0-bb89-d9f23aa81b52" width="70%">
 
 <br>
 
