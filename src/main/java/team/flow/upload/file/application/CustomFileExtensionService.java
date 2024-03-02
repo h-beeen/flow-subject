@@ -14,6 +14,7 @@ import team.flow.upload.file.infra.persistence.FixedFileExtensionRepository;
 import team.flow.upload.global.exception.BusinessException;
 
 import java.util.List;
+import java.util.Locale;
 
 @Service
 @Transactional
@@ -63,7 +64,8 @@ public class CustomFileExtensionService {
     }
 
     private void validateDuplicatedNameInFixedFileExtension(String extensionName) {
-        boolean isDuplicated = customFileExtensionRepository.existsByName(extensionName);
+        String lowerCaseExtensionName = extensionName.toLowerCase(Locale.ENGLISH);
+        boolean isDuplicated = customFileExtensionRepository.existsByName(lowerCaseExtensionName);
 
         if (isDuplicated) {
             throw BusinessException.of(FileExtensionError.DUPLICATED_EXTENSION_IN_FIXED);
