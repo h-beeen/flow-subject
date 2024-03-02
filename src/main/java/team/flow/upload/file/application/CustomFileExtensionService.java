@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import team.flow.upload.file.application.dto.request.CustomFileExtensionRequest;
-import team.flow.upload.file.application.dto.request.FileExtensionIdRequest;
+import team.flow.upload.file.application.dto.request.IdRequest;
 import team.flow.upload.file.application.dto.response.CustomFileExtensionResponse;
 import team.flow.upload.file.domain.CustomFileExtension;
 import team.flow.upload.file.domain.FixedFileExtension;
@@ -29,7 +29,7 @@ public class CustomFileExtensionService {
         return CustomFileExtensionResponse.from(results);
     }
 
-    public void deleteCustomFileExtensions(FileExtensionIdRequest request) {
+    public void deleteCustomFileExtensions(IdRequest request) {
         Long customFileExtensionId = request.id();
         customFileExtensionRepository.deleteById(customFileExtensionId);
     }

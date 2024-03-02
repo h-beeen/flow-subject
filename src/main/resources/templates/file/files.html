@@ -38,7 +38,7 @@
                         <td th:text="${uploadedFile.originalFileName}"></td>
                         <td>
                             <button class="btn btn-secondary" type="button" style="background-color: green"
-                                    th:onclick="'deleteCustomExtension(' + ${uploadedFile.id} + ')'">🫶
+                                    th:onclick="'downloadCustomExtension(' + ${uploadedFile.id} + ')'">🫶
                             </button>
                         </td>
                         <td>
@@ -56,27 +56,9 @@
 </div>
 
 <script>
-    function updateCheckBoxStatus(checkbox) {
-        const extensionId = checkbox.getAttribute('data-extension-id');
-        $.ajax({
-            url: '/file/restrict/fixed',
-            type: 'PATCH',
-            contentType: 'application/json',
-            data: JSON.stringify({
-                id: extensionId
-            }),
-            success: function (response) {
-                location.reload();
-            },
-            error: function (error) {
-                console.error("Error update fixed extension status:", error);
-            }
-        });
-    }
-
     function deleteCustomExtension(extensionId) {
         $.ajax({
-            url: '/file/restrict/custom',
+            url: '/file',
             type: 'DELETE',
             contentType: 'application/json',
             data: JSON.stringify({
@@ -87,27 +69,6 @@
             },
             error: function (error) {
                 console.error("Error deleting custom extension:", error);
-            }
-        });
-    }
-
-    function createCustomExtension() {
-        const extensionInput = document.getElementById('customExtensionInput');
-        const extensionValue = extensionInput.value;
-
-        $.ajax({
-            url: '/file/restrict/custom',
-            type: 'POST',
-            contentType: 'application/json',
-            data: JSON.stringify({
-                name: extensionValue
-            }),
-            success: function (response) {
-                location.reload();
-            },
-            error: function (error) {
-                alert("Error : " + error.responseJSON.errorMessage);
-                console.log(error.responseJSON.errorMessage);
             }
         });
     }

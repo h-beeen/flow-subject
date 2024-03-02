@@ -1,6 +1,6 @@
 package team.flow.upload.file.application.dto.request;
 
-public record FileExtensionIdRequest(
+public record IdRequest(
         Long id
 ) {
 }

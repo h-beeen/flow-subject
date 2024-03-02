@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import team.flow.upload.file.application.CustomFileExtensionService;
 import team.flow.upload.file.application.FixedFileExtensionService;
 import team.flow.upload.file.application.dto.request.CustomFileExtensionRequest;
-import team.flow.upload.file.application.dto.request.FileExtensionIdRequest;
+import team.flow.upload.file.application.dto.request.IdRequest;
 
 @RestController
 @Transactional
@@ -19,13 +19,13 @@ public class RestrictFileExtensionController {
     private final CustomFileExtensionService customFileExtensionService;
 
     @PatchMapping("/fixed")
-    public ResponseEntity<Void> updateFixedFileExtensionStatus(@RequestBody FileExtensionIdRequest request) {
+    public ResponseEntity<Void> updateFixedFileExtensionStatus(@RequestBody IdRequest request) {
         fixedFileExtensionService.changeFixedFileExtensionCheckBox(request);
         return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/custom")
-    public ResponseEntity<Void> deleteCustomFileExtension(@RequestBody FileExtensionIdRequest request) {
+    public ResponseEntity<Void> deleteCustomFileExtension(@RequestBody IdRequest request) {
         customFileExtensionService.deleteCustomFileExtensions(request);
         return ResponseEntity.ok().build();
     }

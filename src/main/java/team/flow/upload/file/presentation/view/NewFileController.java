@@ -1,4 +1,4 @@
-package team.flow.upload.file.presentation.rest;
+package team.flow.upload.file.presentation.view;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
