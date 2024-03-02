@@ -26,7 +26,6 @@
                 <table class="table table-striped custom-table">
                     <thead>
                     <th class="number">순번</th>
-                    <th class="created-at">등록 일시</th>
                     <th class="name-column">파일 이름</th>
                     <th class="download-btn">다운로드</th>
                     <th class="delete-btn">삭제</th>
@@ -34,15 +33,15 @@
                     <tbody>
                     <tr th:each="uploadedFile, iterStat : ${uploadedFiles}">
                         <td th:text="${#numbers.formatInteger(iterStat.count, '03')}"></td>
-                        <td th:text="${uploadedFile.createdDate}"></td>
                         <td th:text="${uploadedFile.originalFileName}"></td>
                         <td>
-                            <a th:href="'/file?id=' + ${uploadedFile.id}" class="btn btn-secondary" style="background-color: green"
-                               role="button">다운로드</a>
+                            <a th:href="'/file?id=' + ${uploadedFile.id}" class="btn btn-secondary" style="background-color: mediumpurple"
+                               role="button">⤵️</a>
                         </td>
                         <td>
-                            <button class="btn btn-secondary" type="button" style="background-color: hotpink"
-                                    th:onclick="'deleteCustomExtension(' + ${uploadedFile.id} + ')'">삭제
+                            <button class="btn btn-secondary" type="button" style="background-color: mediumpurple"
+                                    th:onclick="'deleteCustomExtension(' + ${uploadedFile.id} + ')'">🔪
+
                             </button>
                         </td>
                     </tr>
