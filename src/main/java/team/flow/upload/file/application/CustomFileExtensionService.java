@@ -24,8 +24,8 @@ public class CustomFileExtensionService {
     private final CustomFileExtensionRepository customFileExtensionRepository;
 
     public List<CustomFileExtensionResponse> getCustomFileExtensions() {
-        List<CustomFileExtension> result = customFileExtensionRepository.findAll();
-        return CustomFileExtensionResponse.from(result);
+        List<CustomFileExtension> results = customFileExtensionRepository.findAll();
+        return CustomFileExtensionResponse.from(results);
     }
 
     public void deleteCustomFileExtensions(FileExtensionIdRequest request) {
@@ -43,7 +43,7 @@ public class CustomFileExtensionService {
         customFileExtensionRepository.save(extension);
     }
 
-    private void validateDuplicatedNameInCustomFileExtension(String extensionName) {
+    public void validateDuplicatedNameInCustomFileExtension(String extensionName) {
         List<FixedFileExtension> fixedFileExtensions = fixedFileExtensionRepository.findAll();
         List<String> extensionNames = fixedFileExtensions.stream()
                 .map(fixedFileExtension -> fixedFileExtension.getFileExtensionType().getLowerCase())
@@ -52,6 +52,14 @@ public class CustomFileExtensionService {
         if (extensionNames.contains(extensionName)) {
             throw BusinessException.of(FileExtensionError.DUPLICATED_EXTENSION_IN_CUSTOM);
         }
+    }
+
+    public boolean isRestrictCustomFileExtension(String extensionName) {
+        List<CustomFileExtension> result = customFileExtensionRepository.findAll();
+        String extensionNameLowerCase = extensionName.toLowerCase();
+
+        return result.stream()
+                .anyMatch(customFileExtension -> customFileExtension.getName().toLowerCase().equals(extensionNameLowerCase));
     }
 
     private void validateDuplicatedNameInFixedFileExtension(String extensionName) {

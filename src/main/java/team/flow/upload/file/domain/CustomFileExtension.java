@@ -30,7 +30,7 @@ public class CustomFileExtension extends BaseEntity {
     @Builder
     private CustomFileExtension(String name) {
         validateName(name);
-        this.name = name;
+        this.name = name.toLowerCase();
     }
 
     // Static Factory Method ==//

@@ -2,7 +2,6 @@ package team.flow.upload.file.presentation.rest;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,7 +22,7 @@ public class NewFileController {
 
     @PostMapping
     public String fileUpload(@RequestParam(value = "file") MultipartFile file) {
-        String uploadfile = fileUploadService.uploadfile(file);
+        String uploadfile = fileUploadService.uploadFile(file);
         log.warn("{}", uploadfile);
         return "redirect:/file/new";
     }

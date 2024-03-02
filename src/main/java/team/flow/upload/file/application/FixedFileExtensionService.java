@@ -6,10 +6,12 @@ import org.springframework.transaction.annotation.Transactional;
 import team.flow.upload.file.application.dto.request.FileExtensionIdRequest;
 import team.flow.upload.file.application.dto.response.FixedFileExtensionResponse;
 import team.flow.upload.file.domain.FixedFileExtension;
+import team.flow.upload.file.domain.constants.FileExtensionType;
 import team.flow.upload.file.infra.persistence.FixedFileExtensionRepository;
 import team.flow.upload.global.exception.BusinessException;
 
 import java.util.List;
+import java.util.Locale;
 
 import static team.flow.upload.global.exception.error.GlobalError.GLOBAL_NOT_FOUND;
 
@@ -33,8 +35,11 @@ public class FixedFileExtensionService {
         fixedFileExtension.changeRestrictStatus();
     }
 
-    private String extractExt(String originalFilename) {
-        int index = originalFilename.lastIndexOf(".");
-        return originalFilename.substring(index);
+    public boolean isRestrictFixedFileExtension(String extensionName) {
+        List<FileExtensionType> restrictedFileTypes = fixedFileExtensionRepository.findRestrictedFileTypes();
+        String upperCaseExtensionName = extensionName.toUpperCase(Locale.ENGLISH);
+
+        return restrictedFileTypes.stream()
+                .anyMatch(restrictedFileType -> restrictedFileType.toString().equals(upperCaseExtensionName));
     }
 }
