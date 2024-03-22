@@ -27,6 +27,7 @@
                     <thead>
                     <th class="number">순번</th>
                     <th class="name-column">파일 이름</th>
+                    <th class="name-column">파일 링크</th>
                     <th class="download-btn">다운로드</th>
                     <th class="delete-btn">삭제</th>
                     </thead>
@@ -34,6 +35,7 @@
                     <tr th:each="uploadedFile, iterStat : ${uploadedFiles}">
                         <td th:text="${#numbers.formatInteger(iterStat.count, '03')}"></td>
                         <td th:text="${uploadedFile.originalFileName}"></td>
+                        <td th:text="${uploadedFile.url}"></td>
                         <td>
                             <a th:href="'/file?id=' + ${uploadedFile.id}" class="btn btn-secondary" style="background-color: mediumpurple"
                                role="button">⤵️</a>
@@ -41,7 +43,6 @@
                         <td>
                             <button class="btn btn-secondary" type="button" style="background-color: mediumpurple"
                                     th:onclick="'deleteCustomExtension(' + ${uploadedFile.id} + ')'">🔪
-
                             </button>
                         </td>
                     </tr>
